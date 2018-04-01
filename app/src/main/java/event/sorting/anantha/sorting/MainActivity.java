@@ -32,8 +32,11 @@ public class MainActivity extends AppCompatActivity {
          sorter =  (Button)  findViewById(R.id.button);
          outp.setVisibility(View.INVISIBLE);
          info.setVisibility(View.INVISIBLE);
-
-         sorter.setOnClickListener(new View.OnClickListener() {
+        ////// FIXME: 1/4/18
+       /* Sort even numbers ascending while leaving the even ones
+        on their positions: not getting this logic so i left the odd ones on their positions and sorted even numbers ascending
+*/
+           sorter.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
 
