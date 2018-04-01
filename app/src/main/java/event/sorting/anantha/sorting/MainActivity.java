@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
                      outp.setVisibility(View.VISIBLE);
                      info.setVisibility(View.VISIBLE);
 
-
+                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                     imm.hideSoftInputFromWindow(input.getWindowToken(), 0);
 
                      outp.setText("");
                      for(int i=0;i<newIntegerList.size();i++){
@@ -72,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                  }catch (Exception e){
+                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                     imm.hideSoftInputFromWindow(input.getWindowToken(), 0);
                      Toast.makeText(getApplicationContext(),"Please Enter the numbers properly seperated by (,)",Toast.LENGTH_SHORT).show();
                  }
 
