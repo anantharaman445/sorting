@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         List<Integer> position = new ArrayList<Integer>();
 
         for(int i=0;i<integerList.size();i++){
-            if ((integerList.get(i)%2) == 1) {
+            if ((integerList.get(i)%2) == 1 || (integerList.get(i)%2) == -1) {
                 odd.add(integerList.get(i));
             } else {
                 even.add(integerList.get(i));
