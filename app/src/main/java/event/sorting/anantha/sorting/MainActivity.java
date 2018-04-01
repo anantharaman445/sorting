@@ -1,15 +1,19 @@
 package event.sorting.anantha.sorting;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,27 +47,54 @@ public class MainActivity extends AppCompatActivity {
                      for (Object str : inputNumber) {
                          integerList.add(Integer.parseInt((String)str));
                      }
+                     List<Integer> newIntegerList = new ArrayList<Integer>();
+
+                     newIntegerList = sortInteger(integerList);
+//                     Collections.sort(integerList);
                      outp.setVisibility(View.VISIBLE);
                      info.setVisibility(View.VISIBLE);
 
-                     StringBuilder builder = new StringBuilder();
+
+
                      outp.setText("");
-                     for(int i=0;i<integerList.size();i++){
-                         if(i==integerList.size()-1){
-                             outp.append(integerList.get(i)+"");
+                     for(int i=0;i<newIntegerList.size();i++){
+                         if(i==newIntegerList.size()-1){
+                             outp.append(newIntegerList.get(i)+"");
                          }
                          else {
-                             outp.append(integerList.get(i) + ",");
+                             outp.append(newIntegerList.get(i) + ",");
                          }
 
                      }
 
 
                  }catch (Exception e){
-                     Toast.makeText(getApplicationContext(),"Enter the numbers properly seperated by (,)",Toast.LENGTH_SHORT).show();
+                     Toast.makeText(getApplicationContext(),"Please Enter the numbers properly seperated by (,)",Toast.LENGTH_SHORT).show();
                  }
 
              }
          });
     }
+
+    public List<Integer> sortInteger(List<Integer> integerList){
+        List<Integer> odd = new ArrayList<Integer>();
+        List<Integer> even = new ArrayList<Integer>();
+        List<Integer> position = new ArrayList<Integer>();
+
+        for(int i=0;i<integerList.size();i++){
+            if ((integerList.get(i)%2) == 1) {
+                odd.add(integerList.get(i));
+            } else {
+                even.add(integerList.get(i));
+                position.add(i);
+            }
+            Collections.sort(even);
+
+        }
+        for(int i=0;i<position.size();i++){
+            integerList.set(position.get(i),even.get(i));
+        }
+    return integerList;
+    }
+
 }
